@@ -7,6 +7,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import {Length} from './Components/Length';
+
 function App() {
   return (
     <div>
@@ -33,6 +35,7 @@ function App() {
     </Nav>
   </Navbar.Collapse>
 </Navbar>
+    <Length />
     </div>
   )
 }
