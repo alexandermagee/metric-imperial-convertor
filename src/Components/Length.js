@@ -12,12 +12,28 @@ import {SwitchButton} from './SwitchButton';
 
 
 export class Length extends React.Component {
+
+    handleChange = e => {
+        this.props.calculateConversion(e.target.value)
+    }
+
+    handleClick = e => {
+        this.props.updateRequestedUnits(e.target.value)
+    }
+
     render(){
         return (
             <Row className="text-center my-5">
            <MetricSelection />
             <SwitchButton />
-            <ImperialSelection />
+            <ImperialSelection 
+            imperialUnit={this.props.imperialUnit}
+            imperialValue={this.props.imperialValue}
+            conversionType={this.props.conversionType}
+            calculateConversion={this.props.calculateConversion}
+            handleChange={this.handleChange}
+            handleClick={this.handleClick}
+            />
             </Row>
         )
     }

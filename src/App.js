@@ -7,9 +7,54 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import {convertUserInput} from './HelperFunctions';
+
 import {Length} from './Components/Length';
 
-function App() {
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      imperialUnit : "miles",
+      metricUnit: "kilometres",
+      imperialValue: "",
+      metricValue: "",
+      conversionType: "ImperialToMetric"
+    }
+  }
+
+  updateRequestedUnits = (imperialUnit,metricUnit) => {
+    this.setState({
+      imperialUnit: imperialUnit,
+      metricUnit: metricUnit,
+    })
+    console.log(this.state.imperialUnit, this.state.metricUnit)
+  }
+
+  updateConversionDirection = conversionDirection => {
+    this.setState({
+      conversionType: conversionDirection
+    })
+  }
+
+  calculateConversion = (inputValue) => {
+    let convertedValue = convertUserInput(this.state.conversionType,this.state.imperialUnit,this.state.metricUnit,inputValue);
+    if(this.state.conversionType === "MetricToImperial"){
+      this.setState({
+        metricValue: inputValue,
+        imperialValue: convertedValue
+      })
+    } else {
+      this.setState({
+        metricValue: convertedValue,
+        imperialValue: inputValue
+      })
+    }
+    console.log(this.state.imperialValue, this.state.metricValue)
+
+  }
+
+  render() { 
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -35,9 +80,21 @@ function App() {
     </Nav>
   </Navbar.Collapse>
 </Navbar>
-    <Length />
+
+    <Length 
+      imperialUnit={this.state.imperialUnit}
+      imperialValue={this.state.imperialValue}
+      metricUnit={this.state.metricUnit}
+      metricValue={this.state.metricValue}
+      conversionType={this.state.conversionType}
+      updateRequestedUnits={this.updateRequestedUnits}
+      updateConversionDirection={this.updateConversionDirection}
+      calculateConversion={this.calculateConversion}
+    />
+
     </div>
   )
+}
 }
 
 export default App;
