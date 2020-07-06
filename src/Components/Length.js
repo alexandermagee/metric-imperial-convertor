@@ -36,6 +36,7 @@ export class Length extends React.Component {
            metricValue={this.props.metricValue}
            handleChange={this.handleChange}
            handleClick={this.handleClick}
+           conversionType={this.props.conversionType}
            activeButton={activeButton}
            />
             <SwitchButton 
@@ -46,6 +47,7 @@ export class Length extends React.Component {
             imperialValue={this.props.imperialValue}
             handleChange={this.handleChange}
             handleClick={this.handleClick}
+            conversionType={this.props.conversionType}
             activeButton={activeButton}
             />
             </Row>

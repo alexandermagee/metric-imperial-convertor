@@ -10,9 +10,26 @@ export class ImperialSelection extends React.Component {
         this.props.calculateConversion(e.target.value)
     } */
 
+    colOrder = () => {
+        if(this.props.conversionType === "ImperialToMetric"){
+            return 1
+        } else {
+            return 3
+        }
+    }
+
+    inputDisabled = () => {
+        if(this.props.conversionType === "MetricToImperial"){
+            return true
+        } else {
+            return false
+        }
+    }
+
+
     render(){
         return (
-            <Col xs={{span: 12, order: 1}} md={{span: 5, order: 1}} className="border">
+            <Col xs={{span: 12, order: this.colOrder()}} md={{span: 5, order: this.colOrder()}}>
                 <ButtonGroup aria-label="Basic example">
                     <Button variant="secondary" value={["imperialUnit","miles"]} onClick={this.props.handleClick}
                     style={(this.props.imperialUnit === "miles") ? this.props.activeButton : null}>Miles</Button>
@@ -28,7 +45,7 @@ export class ImperialSelection extends React.Component {
                     
                 </ButtonGroup>
                 <div className="mt-2">
-                <input type="text" name="userInputValue" disabled={false} value={this.props.imperialValue} onChange={this.props.handleChange} />
+                <input type="text" name="userInputValue" disabled={this.inputDisabled()} value={this.props.imperialValue} onChange={this.props.handleChange} />
                 <label for="userInputValue">{this.props.imperialUnit}</label>
                 </div>
             </Col>
