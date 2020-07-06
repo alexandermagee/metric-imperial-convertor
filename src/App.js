@@ -23,18 +23,25 @@ class App extends React.Component {
     }
   }
 
-  updateRequestedUnits = (imperialUnit,metricUnit) => {
+  updateRequestedUnits = (system,unit) => {
+    console.log(system,unit)
     this.setState({
-      imperialUnit: imperialUnit,
-      metricUnit: metricUnit,
+      [system] : unit
     })
-    console.log(this.state.imperialUnit, this.state.metricUnit)
+    console.log(this.state.metricUnit, this.state.imperialUnit)
   }
 
-  updateConversionDirection = conversionDirection => {
+  updateConversionDirection = () => {
+    if(this.state.conversionType === "ImperialToMetric") {
     this.setState({
-      conversionType: conversionDirection
+      conversionType: "MetricToImperial"
     })
+  } else {
+    this.setState({
+      conversionType: "ImperialToMetric"
+    })
+  }
+  console.log("New direction: " + this.state.conversionType)
   }
 
   calculateConversion = (inputValue) => {
@@ -57,7 +64,7 @@ class App extends React.Component {
   render() { 
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">

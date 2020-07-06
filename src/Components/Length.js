@@ -9,6 +9,11 @@ import {ImperialSelection} from './ImperialSelection';
 import {MetricSelection} from './MetricSelection';
 import {SwitchButton} from './SwitchButton';
 
+const activeButton =  {
+    backgroundColor: "goldenrod",
+    color: "black"
+}
+
 
 
 export class Length extends React.Component {
@@ -18,21 +23,30 @@ export class Length extends React.Component {
     }
 
     handleClick = e => {
-        this.props.updateRequestedUnits(e.target.value)
+        let clickedData = (e.target.value.split(','))
+        console.log(clickedData[0],clickedData[1])
+        this.props.updateRequestedUnits(clickedData[0],clickedData[1])
     }
 
     render(){
         return (
             <Row className="text-center my-5">
-           <MetricSelection />
-            <SwitchButton />
+           <MetricSelection 
+           metricUnit={this.props.metricUnit}
+           metricValue={this.props.metricValue}
+           handleChange={this.handleChange}
+           handleClick={this.handleClick}
+           activeButton={activeButton}
+           />
+            <SwitchButton 
+            updateConversionDirection={this.props.updateConversionDirection}
+            />
             <ImperialSelection 
             imperialUnit={this.props.imperialUnit}
             imperialValue={this.props.imperialValue}
-            conversionType={this.props.conversionType}
-            calculateConversion={this.props.calculateConversion}
             handleChange={this.handleChange}
             handleClick={this.handleClick}
+            activeButton={activeButton}
             />
             </Row>
         )
