@@ -18,19 +18,20 @@ const activeButton =  {
 
 export class Length extends React.Component {
 
+
     handleChange = e => {
+        console.log('hc take: '+e.target.value)
         this.props.calculateConversion(e.target.value)
     }
 
     handleClick = e => {
         let clickedData = (e.target.value.split(','))
         console.log(clickedData[0],clickedData[1])
-        this.props.updateRequestedUnits(clickedData[0],clickedData[1])
     }
 
     render(){
         return (
-            <Row className="text-center my-5">
+            <Row className="text-center align-items-center mainArea">
            <MetricSelection 
            metricUnit={this.props.metricUnit}
            metricValue={this.props.metricValue}

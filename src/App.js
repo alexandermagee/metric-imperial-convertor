@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Row from 'react-bootstrap/Row';
 
 import {convertUserInput} from './HelperFunctions';
 
@@ -24,34 +25,38 @@ class App extends React.Component {
   }
 
   updateRequestedUnits = (system,unit) => {
-    console.log(system,unit)
     this.setState({
       [system] : unit
     })
-    console.log(this.state.metricUnit, this.state.imperialUnit)
   }
 
   updateConversionDirection = () => {
     if(this.state.conversionType === "ImperialToMetric") {
     this.setState({
-      conversionType: "MetricToImperial"
+      conversionType: "MetricToImperial",
+      metricValue: "",
+      imperialValue: ""
     })
   } else {
     this.setState({
-      conversionType: "ImperialToMetric"
+      conversionType: "ImperialToMetric",
+      metricValue: "",
+      imperialValue: ""
     })
   }
-  console.log("New direction: " + this.state.conversionType)
   }
 
   calculateConversion = (inputValue) => {
+    console.log(this.state.conversionType,this.state.imperialUnit,this.state.metricUnit,inputValue);
     let convertedValue = convertUserInput(this.state.conversionType,this.state.imperialUnit,this.state.metricUnit,inputValue);
     if(this.state.conversionType === "MetricToImperial"){
+      console.log('converted value is:' +convertedValue)
       this.setState({
         metricValue: inputValue,
         imperialValue: convertedValue
       })
     } else {
+      console.log('converted value is:' +convertedValue)
       this.setState({
         metricValue: convertedValue,
         imperialValue: inputValue
@@ -88,6 +93,14 @@ class App extends React.Component {
   </Navbar.Collapse>
 </Navbar>
 
+    <Row className="text-center my-5">
+      <h1 className="mx-auto">{
+      (this.state.conversionType === "ImperialToMetric") ? 
+      <span className="capitalise">{(`${this.state.imperialUnit} to ${this.state.metricUnit}`)}</span> :
+      <span className="capitalise">{(`${this.state.metricUnit} to ${this.state.imperialUnit}`)}</span> 
+      }</h1>
+    </Row>
+
     <Length 
       imperialUnit={this.state.imperialUnit}
       imperialValue={this.state.imperialValue}
@@ -98,6 +111,12 @@ class App extends React.Component {
       updateConversionDirection={this.updateConversionDirection}
       calculateConversion={this.calculateConversion}
     />
+
+    <p>{this.state.conversionType}</p>
+    <p>{this.state.imperialValue}</p>
+    <p>{this.state.imperialUnit}</p>
+    <p>{this.state.metricValue}</p>
+    <p>{this.state.metricUnit}</p>
 
     </div>
   )

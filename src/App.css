@@ -37,4 +37,18 @@
   }
 }
 
+.switchButton {
+  width: 80px;
+}
 
+.mainArea {
+  height: 60vh;
+}
+
+.capitalise {
+  text-transform: capitalize;
+}
+
+.userInputForm {
+  font-size: 1.5em;
+}
