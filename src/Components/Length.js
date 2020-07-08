@@ -19,7 +19,15 @@ const activeButton =  {
 export class Length extends React.Component {
 
 
+    validateInput = input => {
+        let inputToNumber = parseFloat(input);
+        let backToString = inputToNumber.toString()
+        
+        return(input.length === backToString.length && !isNaN(inputToNumber))
+    }
+
     handleChange = e => {
+        this.validateInput(e.target.value)
         this.props.calculateConversion(e.target.value)
     }
 
