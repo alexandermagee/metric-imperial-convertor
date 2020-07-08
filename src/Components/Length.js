@@ -20,13 +20,12 @@ export class Length extends React.Component {
 
 
     handleChange = e => {
-        console.log('hc take: '+e.target.value)
         this.props.calculateConversion(e.target.value)
     }
 
     handleClick = e => {
         let clickedData = (e.target.value.split(','))
-        console.log(clickedData[0],clickedData[1])
+        this.props.updateRequestedUnits(clickedData[0],clickedData[1])
     }
 
     render(){

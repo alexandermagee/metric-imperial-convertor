@@ -26,7 +26,9 @@ class App extends React.Component {
 
   updateRequestedUnits = (system,unit) => {
     this.setState({
-      [system] : unit
+      [system] : unit,
+      metricValue: "",
+      imperialValue: ""
     })
   }
 
@@ -47,7 +49,6 @@ class App extends React.Component {
   }
 
   calculateConversion = (inputValue) => {
-    console.log(this.state.conversionType,this.state.imperialUnit,this.state.metricUnit,inputValue);
     let convertedValue = convertUserInput(this.state.conversionType,this.state.imperialUnit,this.state.metricUnit,inputValue);
     if(this.state.conversionType === "MetricToImperial"){
       console.log('converted value is:' +convertedValue)
@@ -62,7 +63,6 @@ class App extends React.Component {
         imperialValue: inputValue
       })
     }
-    console.log(this.state.imperialValue, this.state.metricValue)
 
   }
 
