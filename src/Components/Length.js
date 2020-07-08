@@ -25,7 +25,7 @@ export class Length extends React.Component {
 
     handleClick = e => {
         let clickedData = (e.target.value.split(','))
-        this.props.updateRequestedUnits(clickedData[0],clickedData[1])
+        this.props.updateRequestedUnits(clickedData[0],clickedData[1]);
     }
 
     render(){

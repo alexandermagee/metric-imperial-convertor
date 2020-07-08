@@ -24,12 +24,14 @@ class App extends React.Component {
     }
   }
 
+ 
   updateRequestedUnits = (system,unit) => {
     this.setState({
       [system] : unit,
       metricValue: "",
-      imperialValue: ""
+      imperialValue: "" 
     })
+
   }
 
   updateConversionDirection = () => {
