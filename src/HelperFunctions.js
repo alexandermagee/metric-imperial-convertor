@@ -48,11 +48,9 @@ const convertToKm = (inputType, value) => {
         if(!generatedValue){
           generatedValue = 0
         }
-        return (
-        (generatedValue > 1) ?
-         ( Math.floor(generatedValue * 100) / 100 ) :
-         generatedValue
-        )
+        console.log('abcd'+generatedValue)
+        return generatedValue
+      
        /*return generatedValue */
       } else if (conversionDirection === "ImperialToMetric"){
         /*return inputValue / this.imperialCoversionFactors[imperialUnit] */
@@ -60,12 +58,8 @@ const convertToKm = (inputType, value) => {
         if(!generatedValue){
           generatedValue = 0
         }
-        return (
-          (generatedValue > 1) ?
-           ( Math.floor(generatedValue * 100) / 100 ) :
-           generatedValue
-          )
-        /*return generatedValue */
+        console.log('abcd'+generatedValue)
+        return generatedValue 
       }
     }
     
@@ -79,11 +73,20 @@ const convertToKm = (inputType, value) => {
       let convertedValue = conversionIndexKm.generateConversion(conversionDirection,imperialUnit,inputValue);
     
     if(conversionDirection === "ImperialToMetric"){
-      console.log('im imperial! and: '+imperialUnit,convertedValue)
-      console.log('going into convertFromKm with: '+metricUnit,convertedValue)
-    return convertFromKm(metricUnit,convertedValue)
+      let finalValue = convertFromKm(metricUnit,convertedValue)
+      return (
+        (finalValue > 1) ?
+        ( Math.floor(finalValue * 100) / 100 ) :
+        finalValue
+      )
     } else {
-      return convertedValue
+      /*return convertedValue */
+      let finalValue = convertedValue;
+      return (
+        (finalValue > 1) ?
+        ( Math.floor(finalValue * 100) / 100 ) :
+        finalValue
+      )
     }
     
   }
